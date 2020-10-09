@@ -6,7 +6,9 @@ Created on Thu Oct  8 19:24:37 2020
 """
 import os
 import requests
-
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 os.chdir('C:\\Users\\User\\Documents\\School\\code\\COVID-19\\covid-19')
 
@@ -16,3 +18,24 @@ r = requests.get(url)
 with open('confirmed_cases_ontario.csv', 'wb') as f:
     f.write(r.content) 
 
+
+df = pd.read_csv('confirmed_cases_ontario.csv')
+
+df.info()
+
+sns.countplot(df['Client_Gender'],palette='coolwarm')
+sns.countplot(df['Age_Group'],palette='coolwarm')
+sns.countplot(df['Outcome1'],palette='coolwarm')
+sns.countplot(df['Reporting_PHU_City'],palette='coolwarm')
+plt.xticks(rotation=90)
+
+df['Virus'] = 1
+
+df.groupby(['Test_Reported_Date']).count()
+
+dff.plot()
+
+dff = df.groupby(['Test_Reported_Date'])['Virus'].count()
+dff.set_index('Test_Reported_Date', inplace=True)
+
+plt.plot(dff)
