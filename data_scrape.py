@@ -10,15 +10,21 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-os.chdir('C:\\Users\\User\\Documents\\School\\code\\COVID-19\\covid-19')
-
-url = 'https://data.ontario.ca/dataset/f4112442-bdc8-45d2-be3c-12efae72fb27/resource/455fd63b-603d-4608-8216-7d8647f43350/download/conposcovidloc.csv'
-
-r = requests.get(url)
-with open('confirmed_cases_ontario.csv', 'wb') as f:
-    f.write(r.content) 
+links = ['https://data.ontario.ca/dataset/f4f86e54-872d-43f8-8a86-3892fd3cb5e6/resource/ed270bb8-340b-41f9-a7c6-e8ef587e6d11/download/covidtesting.csv',
+         'https://data.ontario.ca/dataset/f4112442-bdc8-45d2-be3c-12efae72fb27/resource/455fd63b-603d-4608-8216-7d8647f43350/download/conposcovidloc.csv']
 
 
+def get_csv(links):
+    for i in range(len(links)):
+        url = links[i]
+        r = requests.get(url)
+        with open(str(links[i].split('/')[8]), 'wb') as f:
+            f.write(r.content) 
+
+if __name__ == '__main__':
+    get_csv(links)
+
+'''
 df = pd.read_csv('confirmed_cases_ontario.csv')
 
 df.info()
@@ -39,3 +45,4 @@ dff = df.groupby(['Test_Reported_Date'])['Virus'].count()
 dff.set_index('Test_Reported_Date', inplace=True)
 
 plt.plot(dff)
+'''
