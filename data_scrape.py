@@ -15,11 +15,10 @@ links = ['https://data.ontario.ca/dataset/f4f86e54-872d-43f8-8a86-3892fd3cb5e6/r
 
 
 def get_csv(links):
-    for i in range(len(links)):
-        url = links[i]
-        r = requests.get(url)
-        with open(str(links[i].split('/')[8]), 'wb') as f:
-            f.write(r.content) 
+    for link in links
+        r = requests.get(link)
+        with open(str(link).split('/')[8]), 'wb') as f:
+            f.write(r.content)
 
 if __name__ == '__main__':
     get_csv(links)
