@@ -1,6 +1,8 @@
 # covid-19
 - This project was intended to provide updates on the current COVID-19 cases in Ontario. We have created an ARIMA time series model as well as daily updated visualizations on the current trend in Ontario.
 
+covid19ontario.herokuapp.com/
+
 # data source
 - All of the data used for this project can be found [here](https://data.ontario.ca/dataset?keywords_en=COVID-19)
 
